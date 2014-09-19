@@ -2,37 +2,58 @@ package avmplus
 {
     public class RTraitsProxy extends RTraits
     {
-        public function RTraitsProxy(traits:Object)
+        public function RTraitsProxy(traits:Object, flags:uint)
         {
             super();
 
-            for each (var accessor:Object in traits.accessors)
+            if((flags & R.ACCESSORS) == R.ACCESSORS)
             {
-                this.accessors.push(new RMemberProxy(accessor));
+                for each (var accessor:Object in traits.accessors)
+                {
+                    this.accessors.push(new RMemberProxy(accessor, flags));
+                }
             }
 
-            for each (var variable:Object in traits.variables)
+            if((flags & R.VARIABLES) == R.VARIABLES)
             {
-                this.variables.push(new RMemberProxy(variable));
+                for each (var variable:Object in traits.variables)
+                {
+                    this.variables.push(new RMemberProxy(variable, flags));
+                }
             }
 
-            this.interfaces = traits.interfaces;
-
-            for each (var method:Object in traits.methods)
+            if((flags & R.INTERFACES) == R.INTERFACES)
             {
-                this.methods.push(new RMemberProxy(method));
+                this.interfaces = traits.interfaces;
             }
 
-            this.bases = traits.bases;
-
-            for each (var metadata:Object in traits.metadata)
+            if((flags & R.METHODS) == R.METHODS)
             {
-                this.metadata.push(new RMetaProxy(metadata));
+                for each (var method:Object in traits.methods)
+                {
+                    this.methods.push(new RMemberProxy(method, flags));
+                }
             }
 
-            for each (var constr:Object in traits.constructor)
+            if((flags & R.BASES) == R.BASES)
             {
-                this.constructor.push(new RArgumentProxy(constr));
+                this.bases = traits.bases;
+            }
+
+            if((flags & R.METADATA) == R.METADATA)
+            {
+                for each (var metadata:Object in traits.metadata)
+                {
+                    this.metadata.push(new RMetaProxy(metadata));
+                }
+            }
+
+            if((flags & R.CONSTRUCTOR) == R.CONSTRUCTOR)
+            {
+                for each (var constr:Object in traits.constructor)
+                {
+                    this.constructor.push(new RArgumentProxy(constr));
+                }
             }
         }
     }

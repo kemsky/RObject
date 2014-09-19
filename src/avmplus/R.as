@@ -90,7 +90,7 @@ package avmplus
          */
         public static function describeInstance(o:*, flags:uint = 0):RObject
         {
-            return new RObjectProxy(describeTypeJSON(o, flags));
+            return new RObjectProxy(describeTypeJSON(o, flags), flags);
         }
 
         /**
@@ -106,7 +106,7 @@ package avmplus
             try
             {
                 instance = new type();
-                result = new RObjectProxy(describeTypeJSON(instance, flags));
+                result = new RObjectProxy(describeTypeJSON(instance, flags), flags);
             }
             catch (e:Error)
             {

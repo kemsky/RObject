@@ -2,7 +2,7 @@ package avmplus
 {
     public class RMemberProxy extends RMember
     {
-        public function RMemberProxy(member:Object)
+        public function RMemberProxy(member:Object, flags:uint)
         {
             super(member.name, member.type, member.access, member.declaredBy, member.returnType);
 
@@ -13,9 +13,12 @@ package avmplus
                 this.parameters.push(new RArgumentProxy(parameter));
             }
 
-            for each (var meta:Object in member.metadata)
+            if((flags & R.METADATA) == R.METADATA)
             {
-                this.metadata.push(new RMetaProxy(meta));
+                for each (var meta:Object in member.metadata)
+                {
+                    this.metadata.push(new RMetaProxy(meta));
+                }
             }
         }
     }
