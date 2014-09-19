@@ -2,14 +2,14 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="RObject">
     <configurations>
-      <configuration name="RObject" output-type="Library" output-file="RObject.swc" output-folder="$MODULE_DIR$/bin">
-        <dependencies target-player="14.0">
+      <configuration name="RObject" target-platform="Desktop" output-type="Library" output-file="RObject.swc" output-folder="$MODULE_DIR$/bin">
+        <dependencies>
           <entries>
-            <entry library-id="c3bd06f3-913f-4fd2-a7ae-ab48139ad84e">
+            <entry library-id="013b94a9-6c0c-4559-b101-998bfd804413">
               <dependency linkage="Test" />
             </entry>
           </entries>
-          <sdk name="air14_4.12.1" />
+          <sdk name="Flex_SDK_4.13" />
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
@@ -25,11 +25,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/testSrc" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="air14_4.12.1" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="Flex_SDK_4.13" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="c3bd06f3-913f-4fd2-a7ae-ab48139ad84e" />
+        <properties id="013b94a9-6c0c-4559-b101-998bfd804413" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/flexunit.swc!/" />
         </CLASSES>

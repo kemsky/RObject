@@ -40,9 +40,9 @@ package avmplus
          * @param flags describeTypeJSON flags
          * @return descriptor object
          */
-        public static function describe(o:*, flags:uint = 0):Object
+        public static function describe(o:*, flags:uint = 0):RObject
         {
-            var result:Object;
+            var result:RObject;
             if (cacheEnabled)
             {
                 var key:String;
@@ -88,9 +88,9 @@ package avmplus
          * @param flags
          * @return descriptor object
          */
-        public static function describeInstance(o:*, flags:uint = 0):Object
+        public static function describeInstance(o:*, flags:uint = 0):RObject
         {
-            return describeTypeJSON(o, flags);
+            return new RObjectProxy(describeTypeJSON(o, flags));
         }
 
         /**
@@ -99,14 +99,14 @@ package avmplus
          * @param flags
          * @return descriptor object
          */
-        public static function describeClass(type:Class, flags:uint = 0):Object
+        public static function describeClass(type:Class, flags:uint = 0):RObject
         {
-            var result:Object;
+            var result:RObject;
             var instance:*;
             try
             {
                 instance = new type();
-                result = describeTypeJSON(instance, flags);
+                result = new RObjectProxy(describeTypeJSON(instance, flags));
             }
             catch (e:Error)
             {

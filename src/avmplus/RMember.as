@@ -24,5 +24,18 @@ package avmplus
             this.declaredBy = declaredBy;
             this.returnType = returnType;
         }
+
+        public function getMetadataByName(name:String):Array
+        {
+            var result:Array = [];
+            for each (var meta:RMeta in metadata)
+            {
+                if(meta.name == name)
+                {
+                    result.push(meta);
+                }
+            }
+            return result;
+        }
     }
 }

@@ -11,5 +11,18 @@ package avmplus
         {
             this.name = name;
         }
+
+        public function getValueByName(name:String):RValue
+        {
+            for each (var parameter:RValue in value)
+            {
+                if(parameter.key == name)
+                {
+                    return parameter;
+                }
+            }
+
+            return null;
+        }
     }
 }

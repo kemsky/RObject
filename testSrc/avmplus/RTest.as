@@ -33,7 +33,7 @@ package avmplus
         }
 
         [Test]
-        public function testConstructor():void
+        public function testNonEmptyConstructor():void
         {
             try
             {
@@ -49,7 +49,7 @@ package avmplus
         [Test]
         public function testInterface():void
         {
-            var json:Object = R.describe(ITestObject, R.TRAITS | R.METHODS);
+            var json:RObject = R.describe(ITestObject, R.TRAITS | R.METHODS);
             assertEquals(1, json.traits.methods.length);
             assertEquals(1, json.traits.methods[0].parameters.length);
             assertEquals("String", json.traits.methods[0].parameters[0].type);
@@ -63,7 +63,7 @@ package avmplus
         {
             var test:TestObject = new TestObject("");
             var flags:int = R.ACCESSORS | R.VARIABLES | R.METADATA | R.TRAITS | R.METHODS | R.CONSTRUCTOR | R.BASES | R.INTERFACES;
-            var json:Object = R.describeInstance(test, flags);
+            var json:RObject = R.describeInstance(test, flags);
             var jsonXML:RObject = R.describeFromXML(flash.utils.describeType(test), flags);
 
             //remove Object methods:
@@ -103,7 +103,7 @@ package avmplus
             for (var i:int = 0; i < jsonXML.length; i++)
             {
                 var m1:RMember = jsonXML[i];
-                var m2:Object = json[i];
+                var m2:RMember = json[i];
 
                 assertEquals(m2.type, m1.type);
                 assertEquals(m2.access, m1.access);
