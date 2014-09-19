@@ -74,6 +74,7 @@ package avmplus
             assertEquals(json.isDynamic, jsonXML.isDynamic);
             assertEquals(json.isFinal, jsonXML.isFinal);
             assertEquals(json.isStatic, jsonXML.isStatic);
+            assertEquals(json.name, jsonXML.name);
 
             assertNotNull(json.traits);
             assertNotNull(jsonXML.traits);
