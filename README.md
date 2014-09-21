@@ -13,5 +13,5 @@ Usage
 
 ```ActionScript
 var flags:int = R.VARIABLES | R.METADATA | R.TRAITS;
-var descriptor:Object = R.describe(test, flags);
+var descriptor:RObject = R.describe(test, flags);
 ```
