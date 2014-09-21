@@ -4,8 +4,6 @@ package avmplus
     {
         public function RTraitsProxy(traits:Object, flags:uint)
         {
-            super();
-
             if((flags & R.ACCESSORS) == R.ACCESSORS)
             {
                 for each (var accessor:Object in traits.accessors)
