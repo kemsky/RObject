@@ -2,6 +2,8 @@ package avmplus
 {
     import flash.utils.getDefinitionByName;
     import flash.utils.getQualifiedClassName;
+    import flash.utils.getTimer;
+
     import mx.logging.ILogger;
     import flash.utils.describeType;
     import mx.logging.Log;
@@ -46,10 +48,31 @@ package avmplus
             }
         }
 
+        //[Test]
+        public function testSpeed():void
+        {
+            var test:TestObject = new TestObject("");
+            var flags:int = R.ACCESSORS | R.VARIABLES | R.METADATA | R.TRAITS | R.METHODS | R.CONSTRUCTOR | R.BASES | R.INTERFACES;
+            var start:Number = getTimer();
+            var steps:int = 100000;
+            for (var i:int = 0; i < steps; i++)
+            {
+                R.describeInstance(test, flags);
+            }
+            log.info("JSON: {0}ms, total {1}ms", (getTimer() - start)/steps, getTimer() - start);
+
+            start = getTimer();
+            for (var k:int = 0; k < steps; k++)
+            {
+                R.describeFromXML(flash.utils.describeType(test), flags);
+            }
+            log.info("XML: {0}ms, total {1}ms", (getTimer() - start)/steps, getTimer() - start);
+        }
+
         [Test]
         public function testInterface():void
         {
-            var json:RObject = R.describe(ITestObject, R.TRAITS | R.METHODS);
+            var json:Object = R.describe(ITestObject, R.TRAITS | R.METHODS);
             assertEquals(1, json.traits.methods.length);
             assertEquals(1, json.traits.methods[0].parameters.length);
             assertEquals("String", json.traits.methods[0].parameters[0].type);
@@ -63,7 +86,7 @@ package avmplus
         {
             var test:TestObject = new TestObject("");
             var flags:int = R.ACCESSORS | R.VARIABLES | R.METADATA | R.TRAITS | R.METHODS | R.CONSTRUCTOR | R.BASES | R.INTERFACES;
-            var json:RObject = R.describeInstance(test, flags);
+            var json:Object = R.describeInstance(test, flags);
             var jsonXML:RObject = R.describeFromXML(flash.utils.describeType(test), flags);
 
             //remove Object methods:
